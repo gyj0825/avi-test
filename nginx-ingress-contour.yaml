@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx-deployment-contour
 spec:
   selector:
     matchLabels:
@@ -47,7 +47,7 @@ metadata:
   name: nginx-ingress
 spec:
   rules:
-  - host: nginx.apps.avilab.com 
+  - host: nginx.contour.cloud.com
     http:
       paths:
       - backend:

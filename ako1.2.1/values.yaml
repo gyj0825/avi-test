@@ -1,0 +1,69 @@
+replicaCount: 1
+
+image:
+  repository: avinetworks/ako
+  pullPolicy: IfNotPresent
+
+AKOSettings:
+  logLevel: "INFO" 
+  fullSyncFrequency: "1800" 
+  apiServerPort: 8080 
+  deleteConfig: "false" 
+  disableStaticRouteSync: "false" 
+  clusterName: "mycluster01" 
+  cniPlugin: "calico" 
+
+NetworkSettings:
+  nodeNetworkList: []
+  subnetIP: "10.161.128.0" 
+  subnetPrefix: "19"
+  networkName: "VM Network"
+
+### This section outlines all the knobs  used to control Layer 7 loadbalancing settings in AKO.
+L7Settings:
+  defaultIngController: "true"
+  l7ShardingScheme: "hostname"
+  serviceType: ClusterIP 
+  shardVSSize: "LARGE" 
+  passthroughShardSize: "SMALL" 
+
+### This section outlines all the knobs  used to control Layer 4 loadbalancing settings in AKO.
+L4Settings:
+  defaultDomain: "apps.avilab.com" 
+
+### This section outlines settings on the Avi controller that affects AKO's functionality.
+ControllerSettings:
+  serviceEngineGroupName: "mycluster01-se-group" 
+  controllerVersion: "20.1.1" 
+  cloudName: "Default-Cloud" 
+  controllerIP: "10.161.131.135"
+
+nodePortSelector: # Only applicable if serviceType is NodePort
+  key: ""
+  value: ""
+
+resources:
+  limits:
+    cpu: 250m
+    memory: 300Mi
+  requests:
+    cpu: 100m
+    memory: 75Mi
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+
+avicredentials:
+  username: "admin"
+  password: "VMware1!"
+
+
+service:
+  type: ClusterIP
+  port: 80
+
+
+persistentVolumeClaim: ""
+mountPath: "/log"
+logFile: "avi.log"
