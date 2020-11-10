@@ -36,7 +36,7 @@ ControllerSettings:
   serviceEngineGroupName: "mycluster01-se-group" 
   controllerVersion: "20.1.1" 
   cloudName: "Default-Cloud" 
-  controllerIP: "10.161.131.135"
+  controllerIP: "xxxxxx"
 
 nodePortSelector: # Only applicable if serviceType is NodePort
   key: ""
@@ -55,8 +55,8 @@ podSecurityContext: {}
 
 
 avicredentials:
-  username: "admin"
-  password: "VMware1!"
+  username: "xxx"
+  password: "xxxxxxxx"
 
 
 service:
